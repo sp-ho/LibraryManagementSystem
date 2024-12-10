@@ -11,10 +11,6 @@ public class LibrarianController {
 	private static Librarian modelL;
 	private AdminMain view;
 	
-	public static void main(String[] args) {
-//		Book book
-//		LibrarianController controller = new LibrarianController(null, null);
-	}
 	public LibrarianController () {
 		this.modelL = new Librarian();
 	}
@@ -33,15 +29,15 @@ public class LibrarianController {
 	public static void addStudent(Student student) {
 		Librarian.addStudent(student);
 	}
-	// TO DO
+
 	public boolean issueBook(Book book , Student s){
 		return modelL.issueBook(book, s);
 	}
-	// TO DO
+
 	public boolean returnBook(String bookSN, String studID) {
 		return modelL.returnBook(bookSN, studID);
 	}
-	// TO DO
+
 	public static Map<String, String> viewIssuedBooks(){
 		return Librarian.viewIssuedBooks();
 	}
