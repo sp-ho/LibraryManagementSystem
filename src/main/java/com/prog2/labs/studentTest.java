@@ -29,7 +29,6 @@ public class studentAdrian {
 	            .stream()
 	            .map(value -> {
 	                String[] values = value.split(",");
-	                // need to improve the Book Constructor in viewCatalog()
 	                return new Book(values[0], values[1], values[2]);
 	            })
 	            .filter(book -> book.getTitle().equals(title))
@@ -63,26 +62,7 @@ public class studentAdrian {
 	            .collect(Collectors.toList());
 	    return matchingBooks;
 	}
-//	 without lambda expressions
-//	public List<Book> searchBookByPublisher (String publisher){
-//		List<Book> matchingBooks = new ArrayList<>();
-//        Map<String, String> bookStringMap = Book.viewCatalog();
-//        Map<String, Book> bookMap = new HashMap<>();
-//        for (Map.Entry<String, String> entry : bookStringMap.entrySet()) {
-//            String[] values = entry.getValue().split(",");
-//            // need to work on the book constructor and the viewCatalog()
-//            Book book = new Book(values[0], values[1], values[2]);
-//            bookMap.put(entry.getKey(), book);
-//        }
-//        for (Map.Entry<String, Book> entry : bookMap.entrySet()) {
-//            Book book = entry.getValue();
-//            if (book.getPublisher().equals(publisher)) {
-//                matchingBooks.add(book);
-//            }
-//        }
-//        return matchingBooks;
-//	}
-	
+
 	// viewCatalog method
 	public Map<String, String> viewCatalog () {
 		return Book.viewCatalog();
