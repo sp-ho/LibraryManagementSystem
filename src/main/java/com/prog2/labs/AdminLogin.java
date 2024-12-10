@@ -41,7 +41,6 @@ public class AdminLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-//					AdminLogin frame = new AdminLogin();
 					frame = new AdminLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -114,28 +113,23 @@ public class AdminLogin extends JFrame {
 				password = String.valueOf(passwordField.getPassword());				
 				
 				// check if the fields are empty
-				if (username.trim().equals("") || password.trim().equals("")) { 
-//					lblNMessage.setText("Please enter your username and password.");	
+				if (username.trim().equals("") || password.trim().equals("")) { 	
 					JOptionPane.showMessageDialog(null, "Enter your username and password.", "Empty field(s)", 2);
 					tfUsername.requestFocus();
 				} else {  // if the fields are not empty
 					// librarian: check if username and password are correct
 					if (rdbtnLibrarian.isSelected() && username.equals("lib") && password.equals("123")) {		
-//					Connection conn = null;
 						AdminMain m = new AdminMain(); // open the AdminMain window
 						m.setVisible(true);
 						Connection connection = dbConnection.getConnection(); // connect to the database
 						frame.dispose(); // close AdminLogin window after librarian login successfully
 					} else if (rdbtnStudent.isSelected() && password.equals("123")) {
-//						else if (rdbtnStudent.isSelected() && username.equals("stu") && password.equals("123")) {
 						// student: check if username and password are correct
 						StuMain s = new StuMain();  // open the StuMain window
-						s.setVisible(true);
-	//					Connection conn = null;						
+						s.setVisible(true);					
 						Connection connection = dbConnection.getConnection(); // connect to the database	
 						frame.dispose(); // close AdminLogin window after student login successfully
 					} else { // if the username and password do not match
-	//					lblNMessage.setText("Username and password do not match.");
 						JOptionPane.showMessageDialog(null, "Username and password do not match.", "Unmatched field(s)", 2);
 						tfUsername.setText("");
 						passwordField.setText("");
