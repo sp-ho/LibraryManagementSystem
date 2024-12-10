@@ -29,7 +29,6 @@ public class Student implements Person{
 		this.contact = contact;
 	}
 	
-	
 	// searchBookByTitle method
 	public List<Book> searchBookByTitle (String title){
 	    Map<String, String> bookStringMap = getCatalog();
@@ -41,7 +40,6 @@ public class Student implements Person{
 	                return new Book(values[0], values[1], values[2], values[3], Double.parseDouble(values[4]), 
             				Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
             				LocalDate.parse(values[7]));
-//	                		Integer.parseInt(values[7]), LocalDate.parse(values[8]));
 	            })
 	            .filter(book -> book.getTitle().equals(title))
 	            .collect(Collectors.toList());
@@ -58,7 +56,6 @@ public class Student implements Person{
 	                return new Book(values[0], values[1], values[2], values[3], Double.parseDouble(values[4]), 
             				Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
             				LocalDate.parse(values[7]));
-//	                		Integer.parseInt(values[7]), LocalDate.parse(values[8]));
 	            })
 	            .filter(book -> book.getAuthor().equals(name))
 	            .collect(Collectors.toList());
@@ -75,7 +72,6 @@ public class Student implements Person{
 	                return new Book(values[0], values[1], values[2], values[3], Double.parseDouble(values[4]), 
             				Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
             				LocalDate.parse(values[7]));
-//	                		Integer.parseInt(values[7]), LocalDate.parse(values[8]));
 	            })
 	            .filter(book -> book.getPublisher().equals(publisher))
 	            .collect(Collectors.toList());
@@ -105,7 +101,6 @@ public class Student implements Person{
 				String publisher = rSet.getString("publisher");
 				int quantity = rSet.getInt("quantity");
 				int issued = rSet.getInt("issued");
-//				int availCopy = quantity - issued;
 				String available = (quantity > 0)? "Yes": "No";
 				
 				String bookDetail = sn + "," + title + "," + author + "," + publisher + "," + available;
@@ -116,21 +111,10 @@ public class Student implements Person{
 				String[] row = {sn, title, author, publisher, available};
 				StuMain.modelSearchBook.addRow(row);
 
-			}
-			// close the connection after operation
-//					if (connection != null && !connection.isClosed()) {
-//						connection.close();
-//					System.out.println("Connection is closed...");
-//					}
-			
+			}			
 		} catch (Exception e) {
-		}
-		
-		// print catalog on console
-//		for (String value: catalog.values()) {
-//		System.out.println(value);
-//	}
-		
+			e.printStackTrace();
+		}		
 		return catalog;
 		
 	}
@@ -177,16 +161,10 @@ public class Student implements Person{
 				StuMain.modelMyBook.setColumnIdentifiers(colName);
 				String[] row = {sn, title, author, dateFormat.format(issueDate), dateFormat.format(expiredDate)};
 				StuMain.modelMyBook.addRow(row);
-				
 			}
-		
-			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		// print myBooks in console
-//		for (String value: myBooks.values()) {
-//		System.out.println(value);
-//	}
 		
 		return myBooks;
 	}
@@ -213,9 +191,7 @@ public class Student implements Person{
 				double price = rSet.getDouble("price");
 				int quantity = rSet.getInt("quantity");
 				int issued = rSet.getInt("issued");
-//				int testIssued = 
 				Date addedDate = rSet.getDate("addedDate");
-//				int availCopy = quantity - issued;
 				String available = (quantity > 0)? "Y": "N";
 				
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -224,18 +200,10 @@ public class Student implements Person{
 									+ String.valueOf(issued) + "," + dateFormat.format(addedDate) + ","
 									+ available;
 				catalog.put(sn, bookDetail);		
-				
-
 			}			
 		} catch (Exception e) {
-		}
-		
-		// print catalog in console
-//		for (String value: catalog.values()) {
-//		System.out.println(value);
-//	}
-//	System.out.println();
-		
+			e.printStackTrace();
+		}		
 		return catalog;
 	}
 	
@@ -258,7 +226,6 @@ public class Student implements Person{
 	// toReturn method
 	public boolean returnBook (String bookSN, String studID) {
 		return false;
-		
 	}
 
 	public int getStId() {
@@ -284,6 +251,4 @@ public class Student implements Person{
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-	
-	
 }
