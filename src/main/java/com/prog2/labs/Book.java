@@ -30,7 +30,6 @@ public class Book {
 	// generic constructor
 	public Book(String sn, String title, String author, String publisher, double price, int qte, int issuedQte,
 				LocalDate dateOfPurchase) {
-//				int availCopy, LocalDate dateOfPurchase) {
 		this.sn = sn;
 		this.title = title;
 		this.author = author;
@@ -38,7 +37,6 @@ public class Book {
 		this.price = price;
 		this.qte = qte;
 		this.issuedQte = issuedQte;
-//		this.availCopy = availCopy;
 		Book.dateOfPurchase= LocalDate.now(); // current date
 	}
 
@@ -102,12 +100,6 @@ public class Book {
 			// update the catalog after adding a book
 			AdminMain.catalog = Book.viewCatalog();
 			
-			
-			// close the connection
-//			if (connection != null && !connection.isClosed()) {
-//				connection.close();
-//				System.out.println("Connection is closed...");
-//			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,7 +114,6 @@ public class Book {
 	
 	controller: returnBook method
 
-	
 	// viewCatalog method
 	public static Map<String, String> viewCatalog() {
 		// key: sn, value: book's details
@@ -139,9 +130,7 @@ public class Book {
 			// reusable prepared statement to execute the query more than once
 			PreparedStatement st = connection.prepareStatement(query);
 			ResultSet rSet = st.executeQuery();
-//			ResultSetMetaData rsmd = (ResultSetMetaData) rSet.getMetaData(); // contain the data retrieve from database
-//			AdminMain.modelCatalog = (DefaultTableModel) AdminMain.tableCatalog.getModel();
-			
+
 			Object[] colName = { "SN", "Title", "Author", " Quantity", "Available Copies", "Available" };
 			AdminMain.modelCatalog.setColumnIdentifiers(colName);
 
@@ -162,7 +151,6 @@ public class Book {
 				
 				// testing in console
 				for (String value: catalog.values()) {
-//				for (String value: catalog.keySet()) {	
 					System.out.println(value);
 				}
 			}			
@@ -230,14 +218,6 @@ public class Book {
 	public void setQte(int qte) {
 		this.qte = qte;
 	}
-	
-//	public int getAvailCopy() {
-//		return availCopy;
-//	}
-//
-//	public void setAvailCopy(int availCopy) {
-//		this.availCopy = availCopy;
-//	}
 
 	public int getIssuedQte() {
 		return issuedQte;
