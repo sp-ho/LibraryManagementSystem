@@ -132,12 +132,6 @@ public class IssueBook extends JFrame {
 						JOptionPane.showMessageDialog(null, "Book is issued successfully.", "Book issued", 2);
 					} else JOptionPane.showMessageDialog(null, "Book is not available currently.", "Book Not Avaiable", 2);
 				} else JOptionPane.showMessageDialog(null, "Student is not a member.", "Ineligible student", 2);
-				
-				// catalog = controller.viewCatalog();
-//				System.out.println(catalog.toString());
-//				for (String value: catalog.values()) {
-//					System.out.println(value);
-//				}
 			}
 		});
 		btnIssueBook.setBounds(134, 203, 99, 23);
