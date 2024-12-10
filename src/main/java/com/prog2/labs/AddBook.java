@@ -23,8 +23,6 @@ public class AddBook extends JFrame {
 	private JTextField tfABAuthor;
 	private JTextField tfABBkPrice;
 	private JTextField tfABQte;
-//	private Book newBook;
-//	private AdminMain adminMain;
 
 	/**
 	 * Launch the application.
@@ -41,8 +39,6 @@ public class AddBook extends JFrame {
 			}
 		});
 	}
-
-	// check if the fields are entered correctly 
 	
 	/**
 	 * Create the frame.
@@ -124,18 +120,13 @@ public class AddBook extends JFrame {
 				Double price = Double.parseDouble(tfABBkPrice.getText());
 				int qte = Integer.parseInt(tfABQte.getText());
 				int issued = 0;
-//				int availCopy = qte - issued;
 				LocalDate dateOfPurchase = LocalDate.now();
 								
 				// create a Book instance (set issued quantity to zero (7th arg))
 				Book newBook = new Book(sn, title, author, publisher, price, qte, issued, dateOfPurchase);
-				// (controller.setBookSN(sn), title, author, publisher, price, qte, 0, dateOfPurchase);
 				
 				// add newbook to Book HashMap
 				LibrarianController.addBook(newBook, "books");				
-				
-				// condition: if book  is added successfully, then close the window
-				// otherwise, pop up message: not successfully... and refocus cursor
 			}
 		});
 		btnAddBk.setBounds(134, 246, 105, 23);
