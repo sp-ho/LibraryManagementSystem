@@ -24,17 +24,16 @@ public class mysqlconn {
 	private static String server = "localhost";
     private static final String USER = "root";
     private static final String PASS = ""; // no password
-//    private static String dbName = "db_lib"; 
     
     // testing 1
     public static Connection dbConnection(String dbName) {
     	Connection connection = null;
     	
     	// partial link excluding the database name
-    	String url1 = "jdbc:mysql://" + server + "/";  // or "jdbc:mysql://localhost:3306/"
+    	String url1 = "jdbc:mysql://" + server + "/";  
     	
     	// full link including the  database name
-    	String url2 = "jdbc:mysql://" + server + "/" + dbName;  // or "jdbc:mysql://localhost:3306/" + dbName
+    	String url2 = "jdbc:mysql://" + server + "/" + dbName;  
     	
     	try {
 	    	// connect to the mysql without specifying a database
@@ -74,29 +73,5 @@ public class mysqlconn {
     	return connection;
     }
 
-    // testing 2: create a function to create and return the connection
-//	public static Connection getConnection() {
-//		Connection connection = null;
-//		
-//	    try { // create object of statement class (required for execution of queries)		      
-//	    	Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); // Setting initial credentials for database connectivity
-//	        Statement stmt = conn.createStatement();
-//	        
-//    		connection = conn;
-//	    	String sql1 = "CREATE DATABASE IF NOT EXISTS " + dbName + ";"; // create database
-//    		stmt.executeUpdate(sql1); // execute the update operation to create the database students
-////	    		System.out.println("Database created successfully.");  
-//    		
-//	    	String sql2 = "USE " + dbName + ";"; // use database
-//	    	stmt.executeQuery(sql2); // execute the update operation to create the database students
-//	    	System.out.println("Connecting...");
-//	    	System.out.println("Using " + dbName + " database."); 
-//	    } catch (SQLException e) {
-////	    	System.out.println("Database already exists.");
-////	       e.printStackTrace();  	  
-//	    }
-//	    return connection;
-//    }
-    
 }
 
