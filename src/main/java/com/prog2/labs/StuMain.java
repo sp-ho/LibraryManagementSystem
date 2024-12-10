@@ -65,16 +65,6 @@ public class StuMain extends JFrame {
 		StudentController controller = new StudentController();
 		LibrarianController controller2 = new LibrarianController();
 		
-		// test 
-//		LibrarianController controller4 = new LibrarianController();
-		
-//		Map<Integer, String> stuMap = ;
-//		String student = controller2.getStudentMap().get(Integer.parseInt(AdminLogin.username));
-//		System.out.println(student);
-//		String[] stuData = student.split(",");
-//		System.out.println(stuData.toString());
-//		StuMain.lblWelcome.setText("Welcome, " + stuData[1]);
-		//
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent e) {
@@ -227,7 +217,7 @@ public class StuMain extends JFrame {
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
+				e.printStackTrace();
 			}
 		}); 
 		
@@ -249,7 +239,7 @@ public class StuMain extends JFrame {
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
+				e.printStackTrace();
 			}
 		}); 
 		
@@ -271,7 +261,7 @@ public class StuMain extends JFrame {
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
+				e.printStackTrace();
 			}
 		}); 
 		
@@ -307,8 +297,6 @@ public class StuMain extends JFrame {
 				
 				
 				for (Book book: matchBooks) {
-					
-//					// check the addedDate
 					StuMain.modelSearchBook.addRow(new Object[] {book.getSn(), book.getTitle(), book.getAuthor(),
 													book.getPublisher(), book.getPrice(), book.getQte(),
 													book.getIssuedQte(), book.getDateOfPurchase()});
@@ -361,8 +349,6 @@ public class StuMain extends JFrame {
 					
 					return;
 				}
-				
-				
 			}
 		});
 		btnRefreshBookList.setFont(new Font("Tahoma", Font.PLAIN, 15));
