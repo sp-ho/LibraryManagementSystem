@@ -5,12 +5,10 @@ import java.util.Map;
 
 public class StudentController {
 	private Student model;
-	// Book modelB;
 	private StuMain view;
 	
 	public StudentController() {
 		this.model = new Student();
-//		this.view = new StuMain();
 	}
 	
 	public StudentController(Student model, StuMain view) {
