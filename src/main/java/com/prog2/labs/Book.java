@@ -22,7 +22,6 @@ public class Book {
 	private double price;
 	private int qte;
 	private int issuedQte;
-//	private int availCopy;
 	private static LocalDate dateOfPurchase;
 	
 	// default constructor
