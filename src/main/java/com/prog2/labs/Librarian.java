@@ -27,14 +27,7 @@ public class Librarian implements Person {
 	}
 	
 	public boolean returnBook(String bookSN, String studID) {
-		// DBConnection
-		// select all rows in issuedBookTable where SN == bookSN && StId == studID
-		// and delete this row in issuedBookTable
-		// select all rows in booksTable with SN == bookSN 
-		// and make quantity = quantity + 1 of that row
-		// delete the row in MyBooks JTable where SN == bookSN
 		return false;
-		
 	}
 	
 	public Map<String, String> getCatalog() {
@@ -59,9 +52,7 @@ public class Librarian implements Person {
 				double price = rSet.getDouble("price");
 				int quantity = rSet.getInt("quantity");
 				int issued = rSet.getInt("issued");
-//				int testIssued = 
 				Date addedDate = rSet.getDate("addedDate");
-//				int availCopy = quantity - issued;
 				String available = (quantity > 0)? "Y": "N";
 				
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -75,11 +66,6 @@ public class Librarian implements Person {
 			}			
 		} catch (Exception e) {
 		}
-		// print catalog on console
-//		for (String value: catalog.values()) {
-//		System.out.println(value);
-//	}
-//	System.out.println();
 		
 		return catalog;
 	}
@@ -91,7 +77,6 @@ public class Librarian implements Person {
 			DbConn dbConn = DbConn.getInstance("db_lib");
 			Connection connection = dbConn.getConnection();
 			// query to select the fields from table in database
-//			String query = "SELECT * FROM issuedBooks ORDER BY sn"; // sorted by order by query
 			String query = "SELECT * FROM issuedBooks";
 			// reusable prepared statement to execute the query more than once
 			PreparedStatement st = connection.prepareStatement(query);
@@ -109,22 +94,11 @@ public class Librarian implements Person {
 				String issueBookDetail = String.valueOf(id) + "," + sn + "," + stuId + "," 
 									+ stuName + "," + stuContact + "," + dateFormat.format(issueDate);
 				issuedBooks.put(sn, issueBookDetail);		
-//				
-//				// print on jtable directly from the database, the list is sorted by sn using the query
-//				Object[] colName = { "Issue ID", "Book SN", "Student ID", "Student Name", "Student Contact", "Issue Date"};
-//				AdminMain.modelIssued.setColumnIdentifiers(colName);
-//				String[] row = {String.valueOf(id), sn, stuId, stuName, stuContact , dateFormat.format(issueDate)};
-//				AdminMain.modelIssued.addRow(row);
 
 			}
 
 		} catch (Exception e) {
 		}
-		// print issuedBooks on console
-//		for (String value: issuedBooks.values()) {
-//		System.out.println(value);
-//	}
-//	System.out.println();
 		
 		// print on jtable from the issuedBooks hashmap, the list is sorted by sn using Treemap
 		Map<String, String> sortedIssuedBooks = new TreeMap<>(issuedBooks);
@@ -160,11 +134,7 @@ public class Librarian implements Person {
 				double price = rSet.getDouble("price");
 				int quantity = rSet.getInt("quantity");
 				int issued = rSet.getInt("issued");
-//				int testIssued = 
-//				int availCopy = rSet.getInt("availCopy");
-//				int availCopy = quantity - issued; // optional
 				Date addedDate = rSet.getDate("addedDate");
-				
 				String available = (quantity > 0)? "Y": "N";
 				
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -185,22 +155,7 @@ public class Librarian implements Person {
 			}			
 		} catch (Exception e) {
 		}
-		// print catalog on console
-//		for (String value: catalog.values()) {
-//		System.out.println(value);
-//	}
-//	System.out.println();
-		
-		// print on jtable from the catalog hashmap, sorting by sn using TreeMap
-//		Map<String, String> sortedCatalog = new TreeMap<>(catalog);
-//		String[] colName = {"SN", "Title", "Author", "Publisher", "Price", "Quantity", "Issued Copies", 
-//							"Added Date", "Available"};
-//		AdminMain.modelCatalog.setColumnIdentifiers(colName);
-//		
-//		for (Map.Entry<String, String> entry: sortedCatalog.entrySet()) {
-//			String[] row = entry.getValue().split(","); // split the value by comma
-//			AdminMain.modelCatalog.addRow(row);
-//		}
+
 		return catalog;
 	}
 	
@@ -233,24 +188,10 @@ public class Librarian implements Person {
 				
 				
 
-			}
-			// close the connection after operation
-//					if (connection != null && !connection.isClosed()) {
-//						connection.close();
-//					System.out.println("Connection is closed...");
-//					}
-			
+			}			
 		} catch (Exception e) {
 		}
-			// print stuList on console
-//			for (String value: stuList.values()) {
-//				System.out.println(value);
-//			}
-			
-			
-		
-		return stuList;
-		
+		return stuList;	
 	}
 	
 	// controller: addBook method
@@ -287,7 +228,6 @@ public class Librarian implements Person {
 				updateSt.executeUpdate();
 				System.out.println("Book quantity updated: " + newQ);
 			} else { // book does not exist, insert the book to the table
-//				String query = "INSERT INTO " + tableName + " (sn, title, author, publisher, price, quantity, issued, availCopy, addedDate)"
 				String query = "INSERT INTO " + tableName + " (sn, title, author, publisher, price, quantity, issued, addedDate)"
 						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 
 				PreparedStatement st = connection.prepareStatement(query);
@@ -298,21 +238,13 @@ public class Librarian implements Person {
 				st.setDouble(5, book.getPrice());
 				st.setInt(6, book.getQte());
 				st.setInt(7, book.getIssuedQte()); // will be set as 0 in AddBook.java 
-//				st.setInt(8, book.getAvailCopy());
 				dateOfPurchase = LocalDate.now();
 				st.setString(8, dateOfPurchase.toString()); // current date
 				
 				st.executeUpdate();
 				System.out.println("Book added");	
 			}
-			
-			// close the connection
-//			if (connection != null && !connection.isClosed()) {
-//				connection.close();
-//				System.out.println("Connection is closed...");
-//			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -341,7 +273,6 @@ public class Librarian implements Person {
 			if (rSet.next()) { 
 				System.out.println("Student already exists.");
 			} else { // book does not exist, insert the book to the table
-//				String query = "INSERT INTO " + tableName + " (sn, title, author, publisher, price, quantity, issued, availCopy, addedDate)"
 				String query = "INSERT INTO students (studentId, name, contact)"
 						+ "VALUES (?, ?, ?)"; 
 				PreparedStatement st = connection.prepareStatement(query);
@@ -353,34 +284,20 @@ public class Librarian implements Person {
 				System.out.println("Student added");	
 			}
 			
-			// close the connection
-//			if (connection != null && !connection.isClosed()) {
-//				connection.close();
-//				System.out.println("Connection is closed...");
-//			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public boolean issueBook(Book book, Student student) {
 		// check if studentid exists in the studentTable
-		// do something similar to viewCatalog but for the studentTable instead
-		// **************************
-		// ************* DB CONNECTION CODE NEEDED
-		// *************
 		 Map<Integer, String> studentMap = getStudentMap();
 		 
 		 if(studentMap.containsKey(student.getStId())) {		
-//			 	System.out.println("student ID " + student.getStId() + "is verified");
 			 	
 			if(book.getQte() > 0) {
 				book.setQte(book.getQte() - 1);
 				book.setIssuedQte(book.getIssuedQte() + 1);
-//				System.out.println("book sn: " + book.getSn());
-//			 	System.out.println("book quantity: " + book.getQte());
-//				System.out.println("issued qte: " + book.getIssuedQte());
 			
 				try {
 					DbConn dbConn = DbConn.getInstance("db_lib");
@@ -403,7 +320,6 @@ public class Librarian implements Person {
 					
 					// if book already exists, update book quantity
 					while (rSet.next()) { 
-//						String sn = rSet.getString("sn");
 						int quantity = rSet.getInt("quantity");
 						int issued = rSet.getInt("issued");
 						
@@ -432,12 +348,9 @@ public class Librarian implements Person {
 					System.out.println("Book is added to issuedBooks table.");
 					
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//				return true;
 			}  
-//			return true;
 		} 		
 		return false;
 	}
@@ -457,8 +370,6 @@ public class Librarian implements Person {
 			// reusable prepared statement to execute the query more than once
 			PreparedStatement st = connection.prepareStatement(query);
 			ResultSet rSet = st.executeQuery();
-//					ResultSetMetaData rsmd = (ResultSetMetaData) rSet.getMetaData(); // contain the data retrieve from database
-//					AdminMain.modelCatalog = (DefaultTableModel) AdminMain.tableCatalog.getModel();
 			
 			Object[] colName = { "ID", "Name", "Contact" };
 			AdminMain.modelStudent.setColumnIdentifiers(colName);
@@ -474,41 +385,15 @@ public class Librarian implements Person {
 
 			}			
 		} catch (Exception e1) {
-				// TODO: handle exception
+			e1.printStackTrace();
 		}
-		
-		// testing in console
-//		for (String value: stuMap.values()) {
-//////				for (String value: catalog.keySet()) {	
-//			System.out.println(value);
-//		}
 		
 	return stuMap;
 	}
 
 	@Override
 	public List<Book> searchBookByTitle(String title) {
-//		
-//		List<Book> matchingBooks = new ArrayList<>();
-//		Map<String, String> bookStringMap = getCatalog();
-//	      Map<String, Book> bookMap = new HashMap<>();
-//	      for (Map.Entry<String, String> entry : bookStringMap.entrySet()) {
-//	          String[] values = entry.getValue().split(",");
-//	          // need to work on the book constructor and the viewCatalog()
-//              Book book = new Book(values[0], values[1], values[2], values[3], 
-//            		  			Double.parseDouble(values[4]), 
-//            		  			Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
-//            		  			LocalDate.parse(values[7]));
-//	          // Book book = new Book(values[0], values[1], values[2]);
-//	          bookMap.put(entry.getKey(), book);
-//	      }
-//	      for (Map.Entry<String, Book> entry : bookMap.entrySet()) {
-//	          Book book = entry.getValue();
-//	          if (book.getTitle().equals(title)) {
-//	              matchingBooks.add(book);
-//	          }
-//	      }
-//	      return matchingBooks;
+
 		
 		Map<String, String> bookStringMap = getCatalog();
 	    List<Book> matchingBooks = bookStringMap.values()
@@ -519,10 +404,8 @@ public class Librarian implements Person {
 	                return new Book(values[0], values[1], values[2], values[3], Double.parseDouble(values[4]), 
 	                				Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
 	                				LocalDate.parse(values[7]));
-//	                				Integer.parseInt(values[7]), LocalDate.parse(values[8]));
 	            })
 	            .filter(book -> book.getTitle().equals(title))
-//	            .filter(book -> book.getTitle().equals(title) || title == null)
 	            .collect(Collectors.toList());
 	    return matchingBooks;
 	   
@@ -538,9 +421,7 @@ public class Librarian implements Person {
 	                return new Book(values[0], values[1], values[2], values[3], Double.parseDouble(values[4]), 
             				Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
             				LocalDate.parse(values[7]));
-//	                		Integer.parseInt(values[7]), LocalDate.parse(values[8]));
 	            })
-//	            .filter(book -> book.getAuthor().equals(name))
 	            .filter(book -> book.getAuthor().equals(name) || name == null)
 	            .collect(Collectors.toList());
 	    return matchingBooks;
@@ -556,9 +437,7 @@ public class Librarian implements Person {
 	                return new Book(values[0], values[1], values[2], values[3], Double.parseDouble(values[4]), 
             				Integer.parseInt(values[5]), Integer.parseInt(values[6]), 
             				LocalDate.parse(values[7]));
-//	                		Integer.parseInt(values[7]), LocalDate.parse(values[8]));
 	            })
-//	            .filter(book -> book.getPublisher().equals(publisher))
 	            .filter(book -> book.getPublisher().equals(publisher) || publisher == null)
 	            .collect(Collectors.toList());
 	    return matchingBooks;
@@ -595,19 +474,11 @@ public class Librarian implements Person {
 			
 			}
 			
-			// close the connection
-//			if (connection != null && !connection.isClosed()) {
-//				connection.close();
-//				System.out.println("Connection is closed...");
-//			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return name;
 	}
 
-
-	
 }
