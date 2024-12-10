@@ -162,8 +162,6 @@ public class AdminMain extends JFrame {
 		
 		tableCatalog = new JTable();
 		modelCatalog = new DefaultTableModel();
-//		Object[] columnCatalog = { "Book ID", "Book Name", "Author", "Available" };
-//		modelCatalog.setColumnIdentifiers(columnCatalog);
 		
 		tableCatalog.setModel(modelCatalog);
 		scrollPane.setViewportView(tableCatalog);
@@ -174,31 +172,7 @@ public class AdminMain extends JFrame {
 				LibrarianController controller3 = new LibrarianController();
 				String title = tfCatalogBookName.getText().trim();
 				String author = tfCatalogAuthor.getText().trim();
-//				
-//				List<Book> matchBooks = null;
-//				
-//				if (!title.isEmpty()) {
-//					
-//					matchBooks = controller3.searchBookByTitle(title);
-////					System.out.println(matchBooks.toString());
-//				}
-//				
-//				if (!author.isEmpty()) {
-//					matchBooks = controller3.searchBookByName(author);
-//				}
-//				
-//				Object[] colName = { "SN", "Title", "Author", "Publisher", "Price ($)", "Quantity", "Issued Copies", 
-//						"Added Date", "Available"};
-//				AdminMain.modelCatalog.setColumnIdentifiers(colName);
-//				modelCatalog.setRowCount(0); // clear pre-existing rows
-//				
-//				for (Book book: matchBooks) {
-//					
-////					// check the addedDate
-//					AdminMain.modelCatalog.addRow(new Object[] {book.getSn(), book.getTitle(), book.getAuthor(),
-//													book.getPublisher(), book.getPrice(), book.getQte(),
-//													book.getIssuedQte(), book.getDateOfPurchase()});
-//				}
+				
 				try {
 					// retreive data from database and store into HashMap catalog
 					DbConn dbConn = DbConn.getInstance("db_lib");
@@ -272,7 +246,6 @@ public class AdminMain extends JFrame {
 									String.valueOf(issued) , dateFormat.format(addedDate), available};
 							AdminMain.modelCatalog.addRow(row);
 					}
-					// reusable prepared statement to execute the query more than once
 
 					}			
 				} catch (Exception e1) {
@@ -318,8 +291,7 @@ public class AdminMain extends JFrame {
 		
 		tableIssued = new JTable();
 		modelIssued = new DefaultTableModel();
-//		Object[] columnIssued = { "Student ID", "Student Name", "Book ID", "Book Name", "Issue Date" };
-//		modelIssued.setColumnIdentifiers(columnIssued);
+
 		tableIssued.setModel(modelIssued);
 		scrollPane_1.setViewportView(tableIssued);
 		
@@ -331,7 +303,6 @@ public class AdminMain extends JFrame {
 					// empty the pre-existing JTable
 					AdminMain.modelIssued.setRowCount(0);
 					// get the catalog from DB
-//					LibrarianController controller3 = new LibrarianController();
 					issuedBooks = LibrarianController.viewIssuedBooks();
 					
 					return;// clear the current rows in the table model
